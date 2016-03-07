@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 500px;
+      }
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  </head>
+  <body>
+  	<h1>This is the Map.</h1>
+    <div id="map"></div>
+    <div class="ui-widget">
+	  <label for="tags">School</label>
+	  <input id="tags">
+	</div>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 33.91000, lng: -118.01201},
+          zoom: 13
+        });
+
+        var eagleString = '<div id="content">'+
+	      '<div id="siteNotice">'+
+	      '</div>'+
+	      '<h1 id="firstHeading" class="firstHeading">The Eagle</h1>'+
+	      '<div id="bodyContent">'+
+	      '<p>14305 San Ardo</p>'+
+	      '<p>La Mirada, CA 90638'+
+	      '</div>'+
+	      '</div>';
+
+        var eagleWindow = new google.maps.InfoWindow({
+		  content: eagleString
+		});
+
+        var eagleImage = 'img/eagle.png';
+
+        var eagleMarker = new google.maps.Marker({
+		  position: ({lat: 33.898258, lng: -118.02756799999997}),
+		  map: map,
+		  title: 'The Eagle',
+		  icon: eagleImage
+		});
+		eagleMarker.addListener('mouseover', function () {
+			eagleWindow.open(map, eagleMarker);
+		});
+		eagleMarker.addListener('mouseout', function () {
+			eagleWindow.close(map, eagleMarker);
+		});
+		eagleMarker.addListener('click', function () {
+			window.open('http://slshouses.com/properties/the-eagle/', '_blank');
+		});
+
+		var sunnymeadString = '<div id="content">'+
+	      '<div id="siteNotice">'+
+	      '</div>'+
+	      '<h1 id="firstHeading" class="firstHeading">Sunnymead</h1>'+
+	      '<div id="bodyContent">'+
+	      '<p>14654 Sunnymead</p>'+
+	      '<p>La Mirada, CA 90638'+
+	      '</div>'+
+	      '</div>';
+
+        var sunnymeadWindow = new google.maps.InfoWindow({
+		  content: sunnymeadString
+		});
+
+        var sunnymeadImage = 'img/sun.png';
+
+        var sunnymeadMarker = new google.maps.Marker({
+		  position: ({lat: 33.921603, lng: -118.01860999999997}),
+		  map: map,
+		  title: 'Sunnymead',
+		  icon: sunnymeadImage
+		});
+		sunnymeadMarker.addListener('mouseover', function () {
+			sunnymeadWindow.open(map, sunnymeadMarker);
+		});
+		sunnymeadMarker.addListener('mouseout', function () {
+			sunnymeadWindow.close(map, sunnymeadMarker);
+		});
+		sunnymeadMarker.addListener('click', function () {
+			window.open('http://slshouses.com/properties/sunnymead/', '_blank');
+		});
+
+		var manzanaresString = '<div id="content">'+
+	      '<div id="siteNotice">'+
+	      '</div>'+
+	      '<h1 id="firstHeading" class="firstHeading">Manzanares</h1>'+
+	      '<div id="bodyContent">'+
+	      '<p>15214 Manzanares</p>'+
+	      '<p>La Mirada, CA 90638'+
+	      '</div>'+
+	      '</div>';
+
+        var manzanaresWindow = new google.maps.InfoWindow({
+		  content: manzanaresString
+		});
+
+        var manzanaresImage = 'img/apple.png';
+
+        var manzanaresMarker = new google.maps.Marker({
+		  position: ({lat: 33.9000259, lng: -118.00658499999997}),
+		  map: map,
+		  title: 'Manzanares',
+		  icon: manzanaresImage
+		});
+		manzanaresMarker.addListener('mouseover', function () {
+			manzanaresWindow.open(map, manzanaresMarker);
+		});
+		manzanaresMarker.addListener('mouseout', function () {
+			manzanaresWindow.close(map, manzanaresMarker);
+		});
+		manzanaresMarker.addListener('click', function () {
+			window.open('http://slshouses.com/properties/manzanares-1/', '_blank');
+		});
+
+		var algecirasString = '<div id="content">'+
+	      '<div id="siteNotice">'+
+	      '</div>'+
+	      '<h1 id="firstHeading" class="firstHeading">Algeciras</h1>'+
+	      '<div id="bodyContent">'+
+	      '<p>15909 Algeciras</p>'+
+	      '<p>La Mirada, CA 90638'+
+	      '</div>'+
+	      '</div>';
+
+        var algecirasWindow = new google.maps.InfoWindow({
+		  content: algecirasString
+		});
+
+        var algecirasImage = 'img/algeciras.png';
+
+        var algecirasMarker = new google.maps.Marker({
+		  position: ({lat: 33.899198, lng: -117.992479}),
+		  map: map,
+		  title: 'Algeciras',
+		  icon: algecirasImage
+		});
+		algecirasMarker.addListener('mouseover', function () {
+			algecirasWindow.open(map, algecirasMarker);
+		});
+		algecirasMarker.addListener('mouseout', function () {
+			algecirasWindow.close(map, algecirasMarker);
+		});
+		algecirasMarker.addListener('click', function () {
+			window.open('http://slshouses.com/properties/algeciras/', '_blank');
+		});
+      
+    
+    	$(function() {
+		    var availableTags = [
+		      "Biola",
+		      "Chapman"
+		    ];
+		    $( "#tags" ).autocomplete({
+		      source: availableTags
+		    });
+		  });
+
+    	$( "#tags" ).autocomplete({
+		  select: function( event, ui ) {
+		  	if (ui.item.value === 'Biola') {
+		  		console.log('Oh Yeah!');
+		  		algecirasMarker.setVisible(false);
+		  	}
+		  }
+		});
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5HxjtMeZ8HZTX02-S5C53a8Jk3XxzUbY&callback=initMap"
+    async defer></script>
+  </body>
+</html>
